@@ -8,5 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "props": "^0.3.0"
+  }
 }
