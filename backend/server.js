@@ -1,17 +1,19 @@
 const express = require('express');
-const connectToDB = require('./src/config/db');
+const userRouter = require('./src/routes/userRouter');
+const connectDatabase = require('./src/config/db');
 const app = express();
-require('dotenv').config();
+require('dotenv').config()
 
+const port = process.env.PORT;
 
-const port = process.env.PORT || 9090
-const db_url = process.env.MONGO_URL;
+app.use(express.json());
+app.use(userRouter);
 
-
-app.listen(port , async () =>{
+app.listen(port,async()=>{
     try{
-       await connectToDB(db_url);
-        console.log(`Server is running at port ${port}`);
+        console.log(`port is running at ${port}`)
+        await connectDatabase(process.env.mongo_url)
+
     }catch(err){
         console.log(err);
     }
