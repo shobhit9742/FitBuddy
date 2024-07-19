@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { counts } from "../utils/data";
-import { CountsCard } from "../components/cards/CountsCard";
-
+import CountsCard from "../components/cards/CountsCard";
+import React from "react";
 
 const Container = styled.div`
   flex: 1;

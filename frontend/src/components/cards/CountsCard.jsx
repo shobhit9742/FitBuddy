@@ -71,9 +71,6 @@ const Icon = styled.div`
 `;
 
 
-
-
-
 const CountsCard = ({item}) => {
   return (
   <Card>
