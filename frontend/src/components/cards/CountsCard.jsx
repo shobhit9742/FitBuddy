@@ -69,7 +69,14 @@ const Icon = styled.div`
   color: ${color};
   `}
 `;
-
+const Desc = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.text_secondary + 90};
+  margin-bottom: 6px;
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+`;
 
 const CountsCard = ({item}) => {
   return (
@@ -81,8 +88,9 @@ const CountsCard = ({item}) => {
           <Unit>{item.unit}</Unit>
           <Span positive>(+10%)</Span>
         </Value>
+        <Desc>{item.desc}</Desc>
     </Left>
-    <Icon>
+    <Icon color={item.color} bg={item.lightColor}>
       {item.icon}
     </Icon>
   </Card>
