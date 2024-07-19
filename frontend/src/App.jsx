@@ -23,7 +23,7 @@ const Container = styled.div`
 
 
 function App() {
-  const [user,setUse]=useState(true);
+  const [user,setUser]=useState(true);
   return <ThemeProvider theme={lightTheme}>
    <BrowserRouter>
    {user ? (
