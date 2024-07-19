@@ -78,22 +78,22 @@ export const Dashboard = () => {
     "pieChartData":[
       {
         "id":0,
-        "value":6000,
+        "value":100,
         "label":"Legs"
       },
       {
         "id":1,
-        "value":1500,
+        "value":150,
         "label":"Back"
       },
       {
         "id":2,
-        "value":3750,
+        "value":375,
         "label":"Shoulder"
       },
       {
         "id":3,
-        "value":2250,
+        "value":225,
         "label":"ABS"
       }
     ]

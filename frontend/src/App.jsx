@@ -6,6 +6,9 @@ import { Navbar } from "./components/Navbar";
 import { useState } from "react";
 import { Dashboard } from "./pages/Dashboard";
 import { Workouts } from "./pages/Workouts";
+import { Tutorials } from "./pages/Tutorials";
+import { Contact } from "./pages/Contact";
+import { Calculater } from "./pages/Calculater";
 
 
 const Container = styled.div`
@@ -32,6 +35,9 @@ function App() {
       <Routes>
       <Route path="/" exact element={<Dashboard/>} />
       <Route path="/workouts" exact element={<Workouts />} />
+      <Route path="/Tutorials" exact element={<Tutorials/>} />
+      <Route path="/Contact" exact element={<Contact/>} />
+      <Route path="/Calculater" exact element={<Calculater/>} />
       </Routes>
     </Container>
    ):
