@@ -1,0 +1,51 @@
+
+#exUL {
+  padding: 0;
+}
+#exName {
+  width: 90%;
+  margin: auto;
+  padding: 10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#exName li {
+  width: 6.5rem;
+  list-style: none;
+  border: 1px solid black;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+li {
+  list-style: none;
+}
+
+#ulExampleBodyPart {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  padding: 0;
+}
+.bodyExerciseList{
+    width: 90%;
+    display: flex;
+    text-align: center;
+    border: 1px solid black;
+}
+#ulExampleBodyPart img{
+    width: 300px;
+}
+
+.nameIntruction{
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+.accordian{
+  display: flex;
+  /* flex-direction: ; */
+}
