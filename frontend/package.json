@@ -10,12 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/react": "^11.12.0",
+    "@emotion/styled": "^11.12.0",
     "@mui/icons-material": "^5.16.4",
     "@mui/material": "^5.16.4",
     "@mui/x-charts": "^7.11.0",
     "@mui/x-date-pickers": "^7.11.0",
+    "axios": "^1.7.2",
     "dayjs": "^1.11.12",
     "props": "^0.3.0",
     "react": "^18.2.0",

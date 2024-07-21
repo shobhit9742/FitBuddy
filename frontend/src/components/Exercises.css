@@ -1,66 +1,3 @@
-/* #exUL {
-  padding: 0;
-}
-#exName {
-  width: 90%;
-  margin: auto;
-  padding: 10px 0px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-#exName li {
-  width: 6.5rem;
-  list-style: none;
-  text-align: center;
-  padding: 5px 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  cursor: pointer;
-  border-radius: 10px;
-}
-#exName li:hover{
- background-color: rgb(243,211,0);
- color: white;
-}
-li {
-  list-style: none;
-}
-
-#ulExampleBodyPart {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 0;
-}
-.bodyExerciseList {
-  width: 90%;
-  display: flex;
-  text-align: center;
-  border: 1px solid black;
-}
-#ulExampleBodyPart img {
-  width: 300px;
-}
-
-.nameIntruction {
-  display: flex;
-  flex-direction: column;
-  margin-left: 50px;
-}
-.accordian {
-  display: flex;
-}
-
-.selected {
-  font-weight: bold;
-  color: #000;
-}
-
-.unselected {
-  opacity: 0.5;
-} */
-
 #exUL {
   padding: 0;
 }
@@ -75,6 +12,7 @@ li {
 }
 
 #exName li {
+
   width: 6.8rem;
   list-style: none;
   text-align: center;
@@ -94,6 +32,7 @@ li {
 }
 
 #ulExampleBodyPart {
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -161,4 +100,3 @@ margin-bottom: 10px;
 }
 .MuiPaper-elevation {
   width: 80%;
-}
