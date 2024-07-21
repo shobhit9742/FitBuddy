@@ -62,7 +62,7 @@ const Heading = styled.h1`
 `;
 
 const HeadingTwo = styled.h1`
-  color: Pink;
+  color: red;
   padding: 10px;
 `;
 
