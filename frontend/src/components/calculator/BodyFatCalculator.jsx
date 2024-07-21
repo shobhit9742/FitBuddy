@@ -1,13 +1,12 @@
-// src/BodyFatCalculator.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const BodyFatCalculator = () => {
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('male');
-  const [weight, setWeight] = useState('');
-  const [waist, setWaist] = useState('');
-  const [neck, setNeck] = useState('');
-  const [hips, setHips] = useState('');
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("male");
+  const [weight, setWeight] = useState("");
+  const [waist, setWaist] = useState("");
+  const [neck, setNeck] = useState("");
+  const [hips, setHips] = useState("");
   const [bodyFat, setBodyFat] = useState(null);
 
   const calculateBodyFat = (e) => {
@@ -20,10 +19,20 @@ const BodyFatCalculator = () => {
 
     let bodyFatPercentage;
 
-    if (gender === 'male') {
-      bodyFatPercentage = 495 / (1.0324 - 0.19077 * Math.log10(ws - nk) + 0.15456 * Math.log10(wt * 2.20462)) - 450;
+    if (gender === "male") {
+      bodyFatPercentage =
+        495 /
+          (1.0324 -
+            0.19077 * Math.log10(ws - nk) +
+            0.15456 * Math.log10(wt * 2.20462)) -
+        450;
     } else {
-      bodyFatPercentage = 495 / (1.29579 - 0.35004 * Math.log10(ws + hp - nk) + 0.22100 * Math.log10(wt * 2.20462)) - 450;
+      bodyFatPercentage =
+        495 /
+          (1.29579 -
+            0.35004 * Math.log10(ws + hp - nk) +
+            0.221 * Math.log10(wt * 2.20462)) -
+        450;
     }
 
     setBodyFat(bodyFatPercentage.toFixed(2));
@@ -76,7 +85,7 @@ const BodyFatCalculator = () => {
             required
           />
         </div>
-        {gender === 'female' && (
+        {gender === "female" && (
           <div>
             <label>Hip Circumference (cm):</label>
             <input

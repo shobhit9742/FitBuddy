@@ -1,13 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import { CalculaterHeader } from '../components/CalculaterHeader'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Calcu1  from '../CalculaterPages/Calcu1';
-import  Calcu2  from '../CalculaterPages/Calcu2';
-import Calcu3  from '../CalculaterPages/Calcu3';
-import Calcu4  from '../CalculaterPages/Calcu4';
-import  Calcu5  from '../CalculaterPages/Calcu5';
-
+import React from "react";
+import styled from "styled-components";
+import { CalculaterHeader } from "../components/CalculaterHeader";
+import { Route, Routes } from "react-router-dom";
+import BMICalculator from "../components/calculator/BMICalculator";
+import BodyFatCalculator from "../components/calculator/BodyFatCalculator";
+import CaloricNeedsCalculator from "../components/calculator/CaloricNeedsCalculator";
+import CalorieCalculator from "../components/calculator/CalorieCalculator";
+import OneRepMaxCalculator from "../components/calculator/OneRepMaxCalculator";
 
 const Container = styled.div`
   width: 100%;
@@ -23,15 +22,15 @@ const Container = styled.div`
 
 export const Calculater = () => {
   return (
-      <Container>
-        <CalculaterHeader/>
-        <Routes>
-          <Route path="/Calcu1" element={<Calcu1/>} />
-          <Route path="/Calcu2" element={<Calcu2 />} />
-          <Route path="/Calcu3" element={<Calcu3 />} />
-          <Route path="/Calcu4" element={<Calcu4 />} />
-          <Route path="/Calcu5" element={<Calcu5 />} />
-        </Routes>
-      </Container>
-  )
-}
+    <Container>
+      <CalculaterHeader />
+      <Routes>
+        <Route path="Calculator1" element={<BMICalculator />} />
+        <Route path="Calculator2" element={<BodyFatCalculator />} />
+        <Route path="Calculator3" element={<CaloricNeedsCalculator />} />
+        <Route path="Calculator4" element={<CalorieCalculator />} />
+        <Route path="Calculator5" element={<OneRepMaxCalculator />} />
+      </Routes>
+    </Container>
+  );
+};

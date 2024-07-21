@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import { Link as NavLink } from "react-router-dom";
 
 const Nav = styled.div`
@@ -40,6 +40,7 @@ const NavItems = styled.ul`
     display: none;
   }
 `;
+
 const Navlink = styled(NavLink)`
   display: flex;
   align-items: center;
@@ -58,17 +59,17 @@ const Navlink = styled(NavLink)`
 `;
 
 export const CalculaterHeader = () => {
-    return (
-        <Nav>
-            <NavContainer>
-            <NavItems>
-              <Navlink to="/Calculater/Calculater1">Calculater1</Navlink>
-              <Navlink to="/Calculater/Calculater2">Calculater2</Navlink>
-              <Navlink to="/Calculater/Calculater3">Calculater3</Navlink>
-              <Navlink to="/Calculater/Calculater4">Calculater4</Navlink>
-              <Navlink to="/Calculater/Calculater5">Calculater5</Navlink>
-            </NavItems>
-            </NavContainer>
-        </Nav>
-      )
-}
+  return (
+    <Nav>
+      <NavContainer>
+        <NavItems>
+          <Navlink to="/Calculater/Calculator1">BMI Calculator</Navlink>
+          <Navlink to="/Calculater/Calculator2">Body Fat % Calc</Navlink>
+          <Navlink to="/Calculater/Calculator3">Caloric Needs</Navlink>
+          <Navlink to="/Calculater/Calculator4">Calories Burn</Navlink>
+          <Navlink to="/Calculater/Calculator5">One-Rep Max (1RM)</Navlink>
+        </NavItems>
+      </NavContainer>
+    </Nav>
+  );
+};

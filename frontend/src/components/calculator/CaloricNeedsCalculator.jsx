@@ -1,13 +1,12 @@
-// src/CaloricNeedsCalculator.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const CaloricNeedsCalculator = () => {
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('male');
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [activityLevel, setActivityLevel] = useState('sedentary');
-  const [goal, setGoal] = useState('maintain');
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("male");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [activityLevel, setActivityLevel] = useState("sedentary");
+  const [goal, setGoal] = useState("maintain");
   const [caloricNeeds, setCaloricNeeds] = useState(null);
 
   const calculateCaloricNeeds = (e) => {
@@ -19,28 +18,28 @@ const CaloricNeedsCalculator = () => {
 
     let bmr;
 
-    if (gender === 'male') {
-      bmr = 88.362 + (13.397 * wt) + (4.799 * ht) - (5.677 * ag);
+    if (gender === "male") {
+      bmr = 88.362 + 13.397 * wt + 4.799 * ht - 5.677 * ag;
     } else {
-      bmr = 447.593 + (9.247 * wt) + (3.098 * ht) - (4.330 * ag);
+      bmr = 447.593 + 9.247 * wt + 3.098 * ht - 4.33 * ag;
     }
 
     let tdee;
 
     switch (activityLevel) {
-      case 'sedentary':
+      case "sedentary":
         tdee = bmr * 1.2;
         break;
-      case 'light':
+      case "light":
         tdee = bmr * 1.375;
         break;
-      case 'moderate':
+      case "moderate":
         tdee = bmr * 1.55;
         break;
-      case 'active':
+      case "active":
         tdee = bmr * 1.725;
         break;
-      case 'very active':
+      case "very active":
         tdee = bmr * 1.9;
         break;
       default:
@@ -50,13 +49,13 @@ const CaloricNeedsCalculator = () => {
     let caloricNeedsValue;
 
     switch (goal) {
-      case 'lose':
+      case "lose":
         caloricNeedsValue = tdee - 500; // Rough estimate to lose weight
         break;
-      case 'gain':
+      case "gain":
         caloricNeedsValue = tdee + 500; // Rough estimate to gain weight
         break;
-      case 'maintain':
+      case "maintain":
       default:
         caloricNeedsValue = tdee;
     }
@@ -104,12 +103,23 @@ const CaloricNeedsCalculator = () => {
         </div>
         <div>
           <label>Activity Level:</label>
-          <select value={activityLevel} onChange={(e) => setActivityLevel(e.target.value)}>
+          <select
+            value={activityLevel}
+            onChange={(e) => setActivityLevel(e.target.value)}
+          >
             <option value="sedentary">Sedentary (little or no exercise)</option>
-            <option value="light">Light (light exercise/sports 1-3 days/week)</option>
-            <option value="moderate">Moderate (moderate exercise/sports 3-5 days/week)</option>
-            <option value="active">Active (hard exercise/sports 6-7 days a week)</option>
-            <option value="very active">Very Active (very hard exercise/sports & physical job)</option>
+            <option value="light">
+              Light (light exercise/sports 1-3 days/week)
+            </option>
+            <option value="moderate">
+              Moderate (moderate exercise/sports 3-5 days/week)
+            </option>
+            <option value="active">
+              Active (hard exercise/sports 6-7 days a week)
+            </option>
+            <option value="very active">
+              Very Active (very hard exercise/sports & physical job)
+            </option>
           </select>
         </div>
         <div>
