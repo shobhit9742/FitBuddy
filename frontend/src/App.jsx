@@ -37,7 +37,7 @@ function App() {
       <Route path="/workouts" exact element={<Workouts />} />
       <Route path="/Tutorials" exact element={<Tutorials/>} />
       <Route path="/Contact" exact element={<Contact/>} />
-      <Route path="/Calculater" exact element={<Calculater/>} />
+      <Route path="/Calculater/*" exact element={<Calculater/>} />
       </Routes>
     </Container>
    ):

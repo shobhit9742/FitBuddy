@@ -7,6 +7,7 @@ import { AddWorkout } from "../components/AddWorkout";
 import WorkoutCard from "../components/cards/WorkoutCard";
 import CountsCard from "../components/cards/CountsCard";
 
+
 const Container = styled.div`
   flex: 1;
   height: 100%;

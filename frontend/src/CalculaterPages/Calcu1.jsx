@@ -2,7 +2,9 @@ import React from 'react'
 
 const Calcu1 = () => {
   return (
-    <div>Calcu1</div>
+    <>
+    <h1>Hello</h1>
+    </>
   )
 };
 

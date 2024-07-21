@@ -59,16 +59,16 @@ const Navlink = styled(NavLink)`
 
 export const CalculaterHeader = () => {
     return (
-        <Nav>
-            <NavContainer>
-            <NavItems>
-              <Navlink to="/Calculater/Calculater1">Calculater1</Navlink>
-              <Navlink to="/Calculater/Calculater2">Calculater2</Navlink>
-              <Navlink to="/Calculater/Calculater3">Calculater3</Navlink>
-              <Navlink to="/Calculater/Calculater4">Calculater4</Navlink>
-              <Navlink to="/Calculater/Calculater5">Calculater5</Navlink>
-            </NavItems>
-            </NavContainer>
-        </Nav>
+      <Nav>
+      <NavContainer>
+        <NavItems>
+          <Navlink to="/Calculater/Calcu1">Calculater1</Navlink>
+          <Navlink to="/Calculater/Calcu2">Calculater2</Navlink>
+          <Navlink to="/Calculater/Calcu3">Calculater3</Navlink>
+          <Navlink to="/Calculater/Calcu4">Calculater4</Navlink>
+          <Navlink to="/Calculater/Calcu5">Calculater5</Navlink>
+        </NavItems>
+      </NavContainer>
+    </Nav>
       )
 }
