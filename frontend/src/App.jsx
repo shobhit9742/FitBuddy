@@ -1,7 +1,6 @@
 import { ThemeProvider,  styled  } from "styled-components";
 import { lightTheme } from "./utils/Themes";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Authentication } from "./pages/Authentication";
 import { Navbar } from "./components/Navbar";
 import { useState } from "react";
@@ -37,7 +36,7 @@ function App() {
               <Route path="/workouts" exact element={<Workouts />} />
               <Route path="/Tutorials" exact element={<Tutorials />} />
               <Route path="/Contact" exact element={<Contact />} />
-              <Route path="/Calculater" exact element={<Calculater />} />
+              <Route path="/Calculater/*" exact element={<Calculater />} />
               <Route path="/exercises" exact element={<Exercises />} />
             </Routes>
           </Container>
