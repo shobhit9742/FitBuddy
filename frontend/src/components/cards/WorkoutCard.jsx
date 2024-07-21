@@ -58,6 +58,7 @@ const WorkoutCard = ({ workout }) => {
       <Name>{workout?.workoutName}</Name>
       <Sets>
         Count: {workout?.sets} sets X {workout?.reps} reps
+
       </Sets>
       <Flex>
         <Details>
@@ -67,6 +68,7 @@ const WorkoutCard = ({ workout }) => {
         <Details>
           <TimelapseRounded sx={{ fontSize: "20px" }} />
           {workout?.duration} min
+
         </Details>
       </Flex>
     </Card>
@@ -74,3 +76,4 @@ const WorkoutCard = ({ workout }) => {
 };
 
 export default WorkoutCard;
+

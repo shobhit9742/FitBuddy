@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BarChart } from "@mui/x-charts/BarChart";
 
+
 const Card = styled.div`
   flex: 1;
   min-width: 280px;
@@ -43,3 +44,4 @@ const WeeklyStatCard = ({ data }) => {
 };
 
 export default WeeklyStatCard;
+

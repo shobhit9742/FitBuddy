@@ -5,6 +5,7 @@ import { createError } from "../error.js";
 import User from "../models/User.js";
 import Workout from "../models/Workout.js";
 
+
 dotenv.config();
 
 export const UserRegister = async (req, res, next) => {
@@ -41,7 +42,7 @@ export const UserLogin = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email: email });
- 
+
     if (!user) {
       return next(createError(404, "User not found"));
     }
@@ -282,7 +283,6 @@ export const addWorkout = async (req, res, next) => {
   }
 };
 
-
 const parseWorkoutLine = (parts) => {
   const details = {};
   console.log(parts);
@@ -307,4 +307,3 @@ const calculateCaloriesBurnt = (workoutDetails) => {
   const caloriesBurntPerMinute = 5; 
   return durationInMinutes * caloriesBurntPerMinute * weightInKg;
 };
-

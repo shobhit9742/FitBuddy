@@ -1,0 +1,103 @@
+#exUL {
+  padding: 0;
+}
+
+#exName {
+  width: 90%;
+  margin: auto;
+  padding: 10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#exName li {
+
+  width: 6.8rem;
+  list-style: none;
+  text-align: center;
+  padding: 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#exName li:hover {
+  background-color: rgb(243, 211, 0);
+  color: white;
+}
+
+li {
+  list-style: none;
+}
+
+#ulExampleBodyPart {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0;
+  max-height: 450px; /*Adjust the height as needed*/
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.bodyExerciseList {
+  width: 82%;
+  display: flex;
+  text-align: center;
+  /* border: 1px solid black; */
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 15px;
+  margin-bottom: 20px; /* Add some space between exercises */
+}
+
+#ulExampleBodyPart img {
+  width: 300px;
+}
+
+.nameIntruction {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  text-align: start;
+}
+
+.accordian {
+  /* display: flex; */
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+.imageDiv img {
+  max-width: 110%; /* Ensure images fit within their container */
+  margin-left: 50px;
+}
+
+.selected {
+  font-weight: bold;
+  color: #000; /* Or any color you prefer for the selected item */
+}
+
+.unselected {
+  opacity: 0.5;
+}
+.targettedMuscle div{
+margin-bottom: 10px;
+}
+.targettedMuscle p {
+  margin: 0 5px ;
+}
+
+.targettedMuscle div h4 {
+  margin: 0;
+}
+
+.targettedMuscle div div p {
+  margin: 0;
+}
+.MuiPaper-elevation {
+  width: 80%;
+}

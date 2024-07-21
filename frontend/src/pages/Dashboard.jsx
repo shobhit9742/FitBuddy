@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
+
 import styled from "styled-components";
 import { counts } from "../utils/data";
+import React, { useState } from "react";
+import { WeeklyStatCard } from "../components/cards/WeeklyStatCard";
+import { CategoryChart } from "../components/cards/CategoryChart";
+import { AddWorkout } from "../components/AddWorkout";
+import WorkoutCard from "../components/cards/WorkoutCard";
 import CountsCard from "../components/cards/CountsCard";
 import WeeklyStatCard from "../components/cards/WeeklyStatCard";
 import CategoryChart from "../components/cards/CategoryChart";
 import AddWorkout from "../components/AddWorkout";
 import WorkoutCard from "../components/cards/WorkoutCard";
 import { addWorkout, getDashboardDetails, getWorkouts } from "../api";
+
 
 const Container = styled.div`
   flex: 1;
@@ -111,6 +118,38 @@ const Dashboard = () => {
     dashboardData();
     getTodaysWorkout();
   }, []);
+
+  const data={
+    totalCaloriesBunet:13500,
+    totalWorkouts:6,
+    avgCaloriesBurnetPerWorkout:2250,
+    totalWeeksCaloriesBurnet:{
+      weeks:["17th","18th","19th","20th","21th","22th","23th"],
+      caloriesBurned:[10500,0,0,0,0,0,13500]
+    },
+    "pieChartData":[
+      {
+        "id":0,
+        "value":100,
+        "label":"Legs"
+      },
+      {
+        "id":1,
+        "value":150,
+        "label":"Back"
+      },
+      {
+        "id":2,
+        "value":375,
+        "label":"Shoulder"
+      },
+      {
+        "id":3,
+        "value":225,
+        "label":"ABS"
+      }
+    ]
+  }
   return (
     <Container>
       <Wrapper>
@@ -118,6 +157,7 @@ const Dashboard = () => {
         <FlexWrap>
           {counts.map((item) => (
             <CountsCard item={item} data={data} />
+
           ))}
         </FlexWrap>
 
@@ -130,6 +170,7 @@ const Dashboard = () => {
             addNewWorkout={addNewWorkout}
             buttonLoading={buttonLoading}
           />
+
         </FlexWrap>
 
         <Section>
@@ -138,6 +179,7 @@ const Dashboard = () => {
             {todaysWorkouts.map((workout) => (
               <WorkoutCard workout={workout} />
             ))}
+
           </CardWrapper>
         </Section>
       </Wrapper>
@@ -146,3 +188,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

@@ -7,6 +7,8 @@ import {
   addWorkout,
   getUserDashboard,
   getWorkoutsByDate,
+  addMeal,
+  getMealsByDate,
 } from "../controllers/User.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 
@@ -17,6 +19,7 @@ router.post("/signin", UserLogin);
 
 router.get("/dashboard", verifyToken, getUserDashboard);
 router.get("/workout", verifyToken, getWorkoutsByDate);
+router.get("/meal", verifyToken, getMealsByDate);
 router.post("/workout", verifyToken, addWorkout);
 router.get('/search', getFoodByName);
 router.get('/all', getAllFoods);
