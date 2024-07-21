@@ -1,13 +1,10 @@
-// import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import "./Exercises.css";
 
 const Exercises = () => {
@@ -67,19 +64,26 @@ const Exercises = () => {
   return (
     <div>
       {error && <div>Error: {error.message}</div>}
-      <div>Body Parts:</div>
       <ul id="exUL">
         <div id="exName">
           {bodyParts.map((bodyPart, index) => (
-            <li key={index} onClick={() => handleBodyPartClick(bodyPart)}>
-              {bodyPart}
+            <li
+              key={index}
+              onClick={() => handleBodyPartClick(bodyPart)}
+              className={
+                bodyPart === selectedBodyPart ? "selected" : "unselected"
+              }
+            >
+              {bodyPart.toUpperCase()}
+
             </li>
           ))}
         </div>
       </ul>
       {selectedBodyPart && (
         <div>
-          <h2>Exercises for {selectedBodyPart}:</h2>
+          <h2 style={{marginLeft:"80px"}}>Exercises for {selectedBodyPart.toUpperCase()}:</h2>
+
           <div id="ulExampleBodyPart">
             {exercises.map((exercise, index) => (
               <div className="bodyExerciseList" key={index}>
@@ -88,7 +92,46 @@ const Exercises = () => {
                 </div>
                 <div className="nameIntruction">
                   <div className="exerName">
-                    <p key={index}>{exercise.name}</p>
+                    <h2 key={index}>{exercise.name.toUpperCase()}</h2>
+                  </div>
+                  <div className="targettedMuscle">
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <h4 style={{ fontWeight: "bold" }}>
+                        Target Muscles : &nbsp;
+                      </h4>
+                      {exercise.target.toUpperCase()};
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <h4 style={{ fontWeight: "bold" }}>Equipment : &nbsp;</h4>
+                      {exercise.equipment.toUpperCase()}
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <h4 style={{ fontWeight: "bold" }}>
+                        Secondary Muscles : &nbsp;
+                      </h4>
+                      {exercise.secondaryMuscles.map((muscles) => (
+                        <p>{muscles.toUpperCase()}, &nbsp;</p>
+                      ))}
+                    </div>
                   </div>
                   <div className="accordian">
                     <Accordion>
@@ -100,8 +143,8 @@ const Exercises = () => {
                         <Typography>Instructions</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography style={{ textAlign: "left" }}>
-                          {exercise.instructions.map((para, index) => (
+                        <Typography style={{ textAlign: "left", textWrap:"wrap"}}>
+            {exercise.instructions.map((para, index) => (
                             <p key={index}>
                               {index + 1}. {para}
                             </p>
@@ -111,7 +154,7 @@ const Exercises = () => {
                     </Accordion>
                   </div>
                 </div>
-                {/* equipment // gifUrl // instructions */}
+                {/* equipment // gifUrl // instructions //target // secondaryMuscles*/}
               </div>
 
               // console.log(exercise)
