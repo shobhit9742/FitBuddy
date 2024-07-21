@@ -1,7 +1,8 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import TextInput from "./TextInput";
-import { useState } from "react";
-import { Button } from "@mui/material";
+import Button from "./Button";
+
 
 const Card = styled.div`
   flex: 1;
@@ -26,43 +27,36 @@ const Title = styled.div`
   }
 `;
 
-export const AddWorkout = ({ workout, setWorkout }) => {
-  const [buttonLoading, setButtonLoading] = useState(false);
-
-  const addNewWorkout = () => {
-    // Add your logic to add a new workout here
-    console.log("Add new workout button clicked!");
-    setButtonLoading(true);
-    // Simulate a delay to demonstrate the loading state
-    setTimeout(() => {
-      setButtonLoading(false);
-    }, 2000);
-  };
+const AddWorkout = ({ workout, setWorkout, addNewWorkout, buttonLoading }) => {
 
   return (
     <Card>
       <Title>Add New Workout</Title>
       <TextInput
         label="Workout"
-        textArea={10}
+        textArea
+        rows={10}
         placeholder={`Enter in this format:
 
-          #Category
-          -Workout Name
-          -Sets
-          -Reps
-          -Weight
-          -Duration`}
+#Category
+-Workout Name
+-Sets
+-Reps
+-Weight
+-Duration`}
         value={workout}
-        handleChange={(e) => setWorkout(e.target.value)}
+        handelChange={(e) => setWorkout(e.target.value)}
+
       />
       <Button
         text="Add Workout"
         small
-        onClick={addNewWorkout}
+        onClick={() => addNewWorkout()}
+
         isLoading={buttonLoading}
         isDisabled={buttonLoading}
       />
     </Card>
   );
-};
+export default AddWorkout;
+

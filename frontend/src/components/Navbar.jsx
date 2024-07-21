@@ -4,6 +4,8 @@ import LogoImg from "../utils/Images/Logo.png";
 import { MenuRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { useState } from "react";
+import { logout } from "../redux/reducers/userSlice";
+import { useDispatch } from "react-redux";
 
 const Nav = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -127,7 +129,8 @@ const MobileMenu = styled.ul`
   z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
 `;
 
-export const Navbar = () => {
+export const Navbar = ({currentUser}) => {
+    const dispatch = useDispatch();
     const [isOpen,setisOpen]=useState(false);
   return (
     <Nav>
@@ -153,15 +156,17 @@ export const Navbar = () => {
         <NavItems>
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
-          <Navlink to="/tutorials">Tutorials</Navlink>
+          <Navlink to="/exercises">Exercises</Navlink>
+          <Navlink to="/personal-foods">Calories Chart</Navlink>
+//           <Navlink to="/tutorials">Tutorials</Navlink>
           <Navlink to="/Calculater">Calculater</Navlink>
           <Navlink to="/contact">Contact</Navlink>
         </NavItems>
 
         {/* usercontainer */}
         <UserContainer>
-          <Avatar />
-          <TextButton>Logout</TextButton>
+        <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
+          <TextButton onClick={() => dispatch(logout())}>Logout</TextButton>
         </UserContainer>
       </NavContainer>
     </Nav>

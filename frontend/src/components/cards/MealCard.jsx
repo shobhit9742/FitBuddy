@@ -1,4 +1,4 @@
-import { FitnessCenterRounded, TimelapseRounded } from "@mui/icons-material";
+// src/components/MealCard.jsx
 import React from "react";
 import styled from "styled-components";
 
@@ -31,49 +31,33 @@ const Name = styled.div`
   color: ${({ theme }) => theme.text_primary};
   font-weight: 600;
 `;
-const Sets = styled.div`
+const Details = styled.div`
+  font-size: 15px;
+  color: ${({ theme }) => theme.text_primary};
+  font-weight: 500;
+`;
+const NutritionInfo = styled.div`
   font-size: 15px;
   color: ${({ theme }) => theme.text_secondary};
   font-weight: 500;
   display: flex;
   gap: 6px;
-`;
-const Flex = styled.div`
-  display: flex;
-  gap: 16px;
-`;
-const Details = styled.div`
-  font-size: 15px;
-  color: ${({ theme }) => theme.text_primary};
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
 `;
 
-const WorkoutCard = ({ workout }) => {
+const MealCard = ({ meal }) => {
   return (
     <Card>
-      <Category>#{workout?.category}</Category>
-      <Name>{workout?.workoutName}</Name>
-      <Sets>
-        Count: {workout?.sets} sets X {workout?.reps} reps
-
-      </Sets>
-      <Flex>
-        <Details>
-          <FitnessCenterRounded sx={{ fontSize: "20px" }} />
-          {workout?.weight} kg
-        </Details>
-        <Details>
-          <TimelapseRounded sx={{ fontSize: "20px" }} />
-          {workout?.duration} min
-
-        </Details>
-      </Flex>
+      <Category>#{meal?.category}</Category>
+      <Name>{meal?.name}</Name>
+      <NutritionInfo>
+        <Details>Calories: {meal?.calories} kcal</Details>
+        <Details>Protein: {meal?.protein} g</Details>
+        <Details>Carbs: {meal?.carbs} g</Details>
+        <Details>Fat: {meal?.fat} g</Details>
+      </NutritionInfo>
     </Card>
   );
 };
 
-export default WorkoutCard;
-
+export default MealCard;
