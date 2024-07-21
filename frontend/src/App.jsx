@@ -1,11 +1,13 @@
-import { ThemeProvider,styled} from "styled-components";
+import { ThemeProvider, styled } from "styled-components";
 import { lightTheme } from "./utils/Themes";
-import { BrowserRouter ,Route, Routes  } from "react-router-dom";
-import { Authentication } from "./pages/Authentication";
-import { Navbar } from "./components/Navbar";
-import { useState } from "react";
-import { Dashboard } from "./pages/Dashboard";
-import { Workouts } from "./pages/Workouts";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {Authentication} from "./pages/Authentication";
+import { useSelector } from "react-redux";
+import {Navbar} from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import {Workouts} from "./pages/Workouts";
+import PersonalFoods from "./PersonalFoodPage";
+import MealTracker from "./components/MealTracker";
 
 
 const Container = styled.div`
@@ -20,27 +22,29 @@ const Container = styled.div`
   transition: all 0.2s ease;
 `;
 
-
-
 function App() {
-  const [user,setUse]=useState(true);
-  return <ThemeProvider theme={lightTheme}>
-   <BrowserRouter>
-   {user ? (
-    <Container>
-      <Navbar/>
-      <Routes>
-      <Route path="/" exact element={<Dashboard/>} />
-      <Route path="/workouts" exact element={<Workouts />} />
-      </Routes>
-    </Container>
-   ):
-      <Container>
-        <Authentication/>
-      </Container>
-}
-   </BrowserRouter>
-  </ThemeProvider>
+  const { currentUser } = useSelector((state) => state.user);
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <BrowserRouter>
+        {currentUser ? (
+          <Container>
+            <Navbar currentUser={currentUser} />
+            <Routes>
+              <Route path="/" exact element={<Dashboard />} />
+              <Route path="/workouts" exact element={<Workouts />} />
+              <Route path="/personal-foods" exact element={<PersonalFoods />}/>
+              <Route path="/meal-tracker" exact element={<MealTracker />} />
+            </Routes>
+          </Container>
+        ) : (
+          <Container>
+            <Authentication />
+          </Container>
+        )}
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

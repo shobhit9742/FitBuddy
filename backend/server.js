@@ -3,6 +3,8 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import UserRoutes from "./src/routes/User.js";
+import FoodRoutes from './src/routes/User.js';
+import MealRoutes from './src/routes/Meal.js';
 
 dotenv.config();
 
@@ -22,6 +24,9 @@ app.use((err, req, res, next) => {
     message,
   });
 });
+
+app.use('/api/food', FoodRoutes);
+app.use("/api/meals", MealRoutes);
 
 app.get("/", async (req, res) => {
   res.status(200).json({

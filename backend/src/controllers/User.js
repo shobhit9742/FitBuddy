@@ -2,15 +2,16 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { createError } from "../error.js";
-import User from "../models/userSchema.js";
-import Workout from "../models/workoutSchema.js";
+import User from "../models/User.js";
+import Workout from "../models/Workout.js";
 
 dotenv.config();
 
 export const UserRegister = async (req, res, next) => {
   try {
     const { email, password, name, img } = req.body;
-    const privatekey = process.env.JWT;
+    const privateKey = process.env.JWT;
+   
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       return next(createError(409, "Email is already in use."));
@@ -26,7 +27,7 @@ export const UserRegister = async (req, res, next) => {
       img,
     });
     const createdUser = await user.save();
-    const token = jwt.sign({ id: createdUser._id }, privatekey, {
+    const token = jwt.sign({ id: createdUser._id }, privateKey, {
       expiresIn: "9999 years",
     });
     return res.status(200).json({ token, user });
@@ -45,7 +46,7 @@ export const UserLogin = async (req, res, next) => {
       return next(createError(404, "User not found"));
     }
     console.log(user);
-    
+
     const isPasswordCorrect = await bcrypt.compareSync(password, user.password);
     if (!isPasswordCorrect) {
       return next(createError(403, "Incorrect password"));
@@ -91,30 +92,34 @@ export const getUserDashboard = async (req, res, next) => {
       },
     ]);
 
+   
     const totalWorkouts = await Workout.countDocuments({
       user: userId,
       date: { $gte: startToday, $lt: endToday },
     });
+
 
     const avgCaloriesBurntPerWorkout =
       totalCaloriesBurnt.length > 0
         ? totalCaloriesBurnt[0].totalCaloriesBurnt / totalWorkouts
         : 0;
 
-    const workoutCalories = await Workout.aggregate([
+
+    const categoryCalories = await Workout.aggregate([
       { $match: { user: user._id, date: { $gte: startToday, $lt: endToday } } },
       {
         $group: {
-          _id: "$workoutName",
+          _id: "$category",
           totalCaloriesBurnt: { $sum: "$caloriesBurned" },
         },
       },
     ]);
 
-    const pieChartData = workoutCalories.map((workout, index) => ({
+
+    const pieChartData = categoryCalories.map((category, index) => ({
       id: index,
-      value: workout.totalCaloriesBurnt,
-      label: workout._id,
+      value: category.totalCaloriesBurnt,
+      label: category._id,
     }));
 
     const weeks = [];
@@ -150,7 +155,7 @@ export const getUserDashboard = async (req, res, next) => {
           },
         },
         {
-          $sort: { _id: 1 },
+          $sort: { _id: 1 }, 
         },
       ]);
 
@@ -214,36 +219,92 @@ export const getWorkoutsByDate = async (req, res, next) => {
 export const addWorkout = async (req, res, next) => {
   try {
     const userId = req.user?.id;
-    const workoutData = req.body;
-
-    if (!workoutData) {
-      return next(createError(400, "Workout data is missing"));
+    const { workoutString } = req.body;
+    if (!workoutString) {
+      return next(createError(400, "Workout string is missing"));
     }
 
-    const { category, workoutName, sets, reps, weight, duration, caloriesBurned } = workoutData;
-
-    if (!category || !workoutName || !duration || caloriesBurned == null) {
-      return next(createError(400, "Missing required fields in workout data"));
+    const eachworkout = workoutString.split(";").map((line) => line.trim());
+  
+    const categories = eachworkout.filter((line) => line.startsWith("#"));
+    if (categories.length === 0) {
+      return next(createError(400, "No categories found in workout string"));
     }
 
-    const workoutDetails = {
-      category,
-      workoutName,
-      sets: sets || 0,
-      reps: reps || 0,
-      weight: weight || 0,
-      duration,
-      caloriesBurned,
-      user: userId,
-    };
+    const parsedWorkouts = [];
+    let currentCategory = "";
+    let count = 0;
 
-    await Workout.create(workoutDetails);
+   
+    await eachworkout.forEach((line) => {
+      count++;
+      if (line.startsWith("#")) {
+        const parts = line?.split("\n").map((part) => part.trim());
+        console.log(parts);
+        if (parts.length < 5) {
+          return next(
+            createError(400, `Workout string is missing for ${count}th workout`)
+          );
+        }
+
+       
+        currentCategory = parts[0].substring(1).trim();
+
+        const workoutDetails = parseWorkoutLine(parts);
+        if (workoutDetails == null) {
+          return next(createError(400, "Please enter in proper format "));
+        }
+
+        if (workoutDetails) {
+         
+          workoutDetails.category = currentCategory;
+          parsedWorkouts.push(workoutDetails);
+        }
+      } else {
+        return next(
+          createError(400, `Workout string is missing for ${count}th workout`)
+        );
+      }
+    });
+
+    
+    await parsedWorkouts.forEach(async (workout) => {
+      workout.caloriesBurned = parseFloat(calculateCaloriesBurnt(workout));
+      await Workout.create({ ...workout, user: userId });
+    });
 
     return res.status(201).json({
-      message: "Workout added successfully",
-      workout: workoutDetails,
+      message: "Workouts added successfully",
+      workouts: parsedWorkouts,
     });
   } catch (err) {
     next(err);
   }
 };
+
+
+const parseWorkoutLine = (parts) => {
+  const details = {};
+  console.log(parts);
+  if (parts.length >= 5) {
+    details.workoutName = parts[1].substring(1).trim();
+    details.sets = parseInt(parts[2].split("sets")[0].substring(1).trim());
+    details.reps = parseInt(
+      parts[2].split("sets")[1].split("reps")[0].substring(1).trim()
+    );
+    details.weight = parseFloat(parts[3].split("kg")[0].substring(1).trim());
+    details.duration = parseFloat(parts[4].split("min")[0].substring(1).trim());
+    console.log(details);
+    return details;
+  }
+  return null;
+};
+
+
+const calculateCaloriesBurnt = (workoutDetails) => {
+  const durationInMinutes = parseInt(workoutDetails.duration);
+  const weightInKg = parseInt(workoutDetails.weight);
+  const caloriesBurntPerMinute = 5; 
+  return durationInMinutes * caloriesBurntPerMinute * weightInKg;
+};
+
