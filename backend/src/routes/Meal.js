@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.post("/addMeal", verifyToken, addMeal);
 router.get("/getAllMeals", getAllMeals);
-router.get("/meal/:id", getMealById);
 router.put("/meal/:id", verifyToken, updateMeal);
 router.delete("/meal/:id", verifyToken, deleteMeal);
 router.get('/meals', getMealsByDate);

@@ -119,8 +119,8 @@ const MealTracker = () => {
               <CircularProgress />
             ) : (
               <CardWrapper>
-                {todaysMeals.map((meal) => (
-                  <MealCard key={meal._id} meal={meal} />
+                {todaysMeals.map((meals) => (
+                  <MealCard key={meals._id} meal={meals} />
                 ))}
               </CardWrapper>
             )}

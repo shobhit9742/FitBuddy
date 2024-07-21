@@ -34,7 +34,7 @@ export const addWorkout = async (token, data) =>
 
   export const getMeals = async (token, queryParams = '') => {
     try {
-      const response = await API.get(`/meals${queryParams}`, {
+      const response = await API.get(`/getAllMeals`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
