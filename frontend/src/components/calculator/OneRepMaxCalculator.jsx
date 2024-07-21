@@ -1,9 +1,9 @@
 // src/OneRepMaxCalculator.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const OneRepMaxCalculator = () => {
-  const [weight, setWeight] = useState('');
-  const [reps, setReps] = useState('');
+  const [weight, setWeight] = useState("");
+  const [reps, setReps] = useState("");
   const [oneRepMax, setOneRepMax] = useState(null);
 
   const calculateOneRepMax = (e) => {

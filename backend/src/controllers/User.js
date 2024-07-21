@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { createError } from "../error.js";
 import User from "../models/userSchema.js";
 import Workout from "../models/workoutSchema.js";
+import Meal from "../models/mealsSchema.js";
 
 dotenv.config();
 
@@ -40,12 +41,12 @@ export const UserLogin = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email: email });
- 
+
     if (!user) {
       return next(createError(404, "User not found"));
     }
     console.log(user);
-    
+
     const isPasswordCorrect = await bcrypt.compareSync(password, user.password);
     if (!isPasswordCorrect) {
       return next(createError(403, "Incorrect password"));
@@ -220,7 +221,15 @@ export const addWorkout = async (req, res, next) => {
       return next(createError(400, "Workout data is missing"));
     }
 
-    const { category, workoutName, sets, reps, weight, duration, caloriesBurned } = workoutData;
+    const {
+      category,
+      workoutName,
+      sets,
+      reps,
+      weight,
+      duration,
+      caloriesBurned,
+    } = workoutData;
 
     if (!category || !workoutName || !duration || caloriesBurned == null) {
       return next(createError(400, "Missing required fields in workout data"));
@@ -242,6 +251,177 @@ export const addWorkout = async (req, res, next) => {
     return res.status(201).json({
       message: "Workout added successfully",
       workout: workoutDetails,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ////////////////////////////////////////////////////////
+
+// export const getMealsByDate = async (req, res, next) => {
+//   try {
+//     const userId = req.user?.id;
+//     const user = await User.findById(userId);
+//     let date = req.query.date ? new Date(req.query.date) : new Date();
+//     if (!user) {
+//       return next(createError(404, "User not found"));
+//     }
+//     const startOfDay = new Date(
+//       date.getFullYear(),
+//       date.getMonth(),
+//       date.getDate()
+//     );
+//     const endOfDay = new Date(
+//       date.getFullYear(),
+//       date.getMonth(),
+//       date.getDate() + 1
+//     );
+
+//     const todaysMeals = await Meal.find({
+//       userId: userId,
+//       date: { $gte: startOfDay, $lt: endOfDay },
+//     });
+//     const totalCaloriesBurnt = todaysMeals.reduce(
+//       (total, meal) => total + meal.caloriesBurned,
+//       0
+//     );
+
+//     return res.status(200).json({ todaysMeals, totalCaloriesBurnt });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// export const addMeal = async (req, res, next) => {
+//   try {
+//     const userId = req.user?.id;
+//     const mealData = req.body;
+
+//     if (!mealData) {
+//       return next(createError(400, "Meal data is missing"));
+//     }
+
+//     const { name, calories, protein, carbs, fat } = mealData;
+
+//     if (
+//       !name ||
+//       !calories ||
+//       !protein ||
+//       !carbs ||
+//       !fat ||
+//       caloriesBurned == null
+//     ) {
+//       return next(createError(400, "Missing required fields in workout data"));
+//     }
+
+//     const mealDetails = {
+//       category,
+//       calories: calories || 96,
+//       protein: protein || 29,
+//       carbs: carbs || 120,
+//       fat: fat || 25,
+//       caloriesBurned,
+//       user: userId,
+//     };
+
+//     await Meal.create(mealDetails);
+
+//     return res.status(201).json({
+//       message: "Meal added successfully",
+//       meal: mealDetails,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// Ensure to import necessary modules and define the `createError` function
+
+export const getMealsByDate = async (req, res, next) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return next(createError(401, "User not authenticated"));
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return next(createError(404, "User not found"));
+    }
+
+    let date = req.query.date ? new Date(req.query.date) : new Date();
+    const startOfDay = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+    const endOfDay = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() + 1
+    );
+
+    const todaysMeals = await Meal.find({
+      userId: userId,
+      date: { $gte: startOfDay, $lt: endOfDay },
+    });
+
+    const totalCaloriesBurned = todaysMeals.reduce(
+      (total, meal) => total + (meal.caloriesBurned || 0),
+      0
+    );
+
+    return res.status(200).json({ todaysMeals, totalCaloriesBurned });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const addMeal = async (req, res, next) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return next(createError(401, "User not authenticated"));
+    }
+
+    const mealData = req.body;
+    if (!mealData) {
+      return next(createError(400, "Meal data is missing"));
+    }
+
+    const { name, category, calories, protein, carbs, fat, caloriesBurned } =
+      mealData;
+
+    if (
+      !name ||
+      !category ||
+      !calories ||
+      !protein ||
+      !carbs ||
+      !fat ||
+      caloriesBurned == null
+    ) {
+      return next(createError(400, "Missing required fields in meal data"));
+    }
+
+    const mealDetails = {
+      name,
+      category,
+      calories: calories || 96,
+      protein: protein || 29,
+      carbs: carbs || 120,
+      fat: fat || 25,
+      caloriesBurned,
+      userId,
+      date: new Date(),
+    };
+
+    const newMeal = await Meal.create(mealDetails);
+
+    return res.status(201).json({
+      message: "Meal added successfully",
+      meal: newMeal,
     });
   } catch (err) {
     next(err);
