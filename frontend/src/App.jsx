@@ -1,11 +1,13 @@
 import { ThemeProvider, styled } from "styled-components";
 import { lightTheme } from "./utils/Themes";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import Dashboard from "./pages/Dashboard";
 import {Workouts} from "./pages/Workouts";
 import PersonalFoods from "./PersonalFoodPage";
 import MealTracker from "./components/MealTracker";
+
 import { Authentication } from "./pages/Authentication";
 import { Navbar } from "./components/Navbar";
 import { useState } from "react";

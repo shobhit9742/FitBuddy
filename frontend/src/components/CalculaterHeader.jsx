@@ -63,11 +63,11 @@ export const CalculaterHeader = () => {
     <Nav>
       <NavContainer>
         <NavItems>
-          <Navlink to="/Calculater/Calculator1">BMI Calculator</Navlink>
-          <Navlink to="/Calculater/Calculator2">Body Fat % Calc</Navlink>
-          <Navlink to="/Calculater/Calculator3">Caloric Needs</Navlink>
-          <Navlink to="/Calculater/Calculator4">Calories Burn</Navlink>
-          <Navlink to="/Calculater/Calculator5">One-Rep Max (1RM)</Navlink>
+          <Navlink to="/Calculater/BMI-Calculator">BMI Calculator</Navlink>
+          <Navlink to="/Calculater/Body-Fat">Body Fat % Calc</Navlink>
+          <Navlink to="/Calculater/Caloric-Needs">Caloric Needs</Navlink>
+          <Navlink to="/Calculater/Calories-Burn">Calories Burn</Navlink>
+          <Navlink to="/Calculater/One-Rep-Max">One-Rep Max (1RM)</Navlink>
         </NavItems>
       </NavContainer>
     </Nav>

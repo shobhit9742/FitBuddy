@@ -25,11 +25,11 @@ export const Calculater = () => {
     <Container>
       <CalculaterHeader />
       <Routes>
-        <Route path="Calculator1" element={<BMICalculator />} />
-        <Route path="Calculator2" element={<BodyFatCalculator />} />
-        <Route path="Calculator3" element={<CaloricNeedsCalculator />} />
-        <Route path="Calculator4" element={<CalorieCalculator />} />
-        <Route path="Calculator5" element={<OneRepMaxCalculator />} />
+        <Route path="BMI-Calculator" element={<BMICalculator />} />
+        <Route path="Body-Fat" element={<BodyFatCalculator />} />
+        <Route path="Caloric-Needs" element={<CaloricNeedsCalculator />} />
+        <Route path="Calories-Burn" element={<CalorieCalculator />} />
+        <Route path="One-Rep-Max" element={<OneRepMaxCalculator />} />
       </Routes>
     </Container>
   );
