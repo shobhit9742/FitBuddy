@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import TextInput from "./TextInput";
-import Button from "./Button";
+import  Button  from "./Button";
+import { UserSignUp } from "../api";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/reducers/userSlice";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -21,6 +25,39 @@ const Span = styled.div`
 `;
 
 export const SignUp = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const validateInputs = () => {
+    if (!name || !email || !password) {
+      alert("Please fill in all fields");
+      return false;
+    }
+    return true;
+  };
+
+  const handelSignUp = async () => {
+    setLoading(true);
+    setButtonDisabled(true);
+    if (validateInputs()) {
+      await UserSignUp({ name, email, password })
+        .then((res) => {
+          dispatch(loginSuccess(res.data));
+          alert("Account Created Success");
+          setLoading(false);
+          setButtonDisabled(false);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+          setLoading(false);
+          setButtonDisabled(false);
+        });
+    }
+  };
   return (
     <Container>
       <div>
@@ -37,17 +74,27 @@ export const SignUp = () => {
       <TextInput
           label="Enter Full name"
           placeholder="Enter your Name"
+          value={name}
+          handelChange={(e) => setName(e.target.value)}
         />
          <TextInput
           label="Email Address"
           placeholder="Enter your email address"
+          value={email}
+          handelChange={(e) => setEmail(e.target.value)}
         />
         <TextInput
           label="Password"
           placeholder="Enter your Password"
           password
+          value={password}
+          handelChange={(e) => setPassword(e.target.value)}
         />
-        <Button text="SignUp"/>
+        <Button text="SignUp"
+        onClick={handelSignUp}
+        isLoading={loading}
+        isDisabled={buttonDisabled}
+        />
       </div>
       </div>
     </Container>

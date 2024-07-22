@@ -1,5 +1,6 @@
-import { BarChart } from "@mui/icons-material";
+import React from "react";
 import styled from "styled-components";
+import { BarChart } from "@mui/x-charts/BarChart";
 
 
 const Card = styled.div`
@@ -25,18 +26,22 @@ const Title = styled.div`
   }
 `;
 
-
-export const WeeklyStatCard = ({data}) => {
+const WeeklyStatCard = ({ data }) => {
   return (
     <Card>
       <Title>Weekly Calories Burned</Title>
-      {data?.totalWeeksCaloriesBurnt && <BarChart
-      xAxis={[
-        { scaleType: "band", data: data?.totalWeeksCaloriesBurnt?.weeks },
-      ]}
-      series={[{ data: data?.totalWeeksCaloriesBurnt?.caloriesBurned }]}
-      height={300}
-      />}
+      {data?.totalWeeksCaloriesBurnt && (
+        <BarChart
+          xAxis={[
+            { scaleType: "band", data: data?.totalWeeksCaloriesBurnt?.weeks },
+          ]}
+          series={[{ data: data?.totalWeeksCaloriesBurnt?.caloriesBurned }]}
+          height={300}
+        />
+      )}
     </Card>
   );
 };
+
+export default WeeklyStatCard;
+

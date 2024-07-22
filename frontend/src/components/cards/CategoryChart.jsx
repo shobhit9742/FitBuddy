@@ -1,5 +1,7 @@
-import { PieChart } from "@mui/x-charts/PieChart";
+import React from "react";
 import styled from "styled-components";
+import { PieChart } from "@mui/x-charts/PieChart";
+
 
 const Card = styled.div`
   flex: 1;
@@ -24,7 +26,8 @@ const Title = styled.div`
   }
 `;
 
-export const CategoryChart = ({data}) => {
+const CategoryChart = ({ data }) => {
+
   return (
     <Card>
       <Title>Weekly Calories Burned</Title>
@@ -45,3 +48,6 @@ export const CategoryChart = ({data}) => {
     </Card>
   );
 };
+
+export default CategoryChart;
+
