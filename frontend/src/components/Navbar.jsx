@@ -157,7 +157,7 @@ export const Navbar = ({currentUser}) => {
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
           <Navlink to="/exercises">Exercises</Navlink>
-          <Navlink to="/personal-foods">Calories Chart</Navlink>
+          <Navlink to="/personal-foods">Search</Navlink>
 //           <Navlink to="/tutorials">Tutorials</Navlink>
           <Navlink to="/Calculater">Calculater</Navlink>
           <Navlink to="/contact">Contact</Navlink>
