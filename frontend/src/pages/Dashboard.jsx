@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { counts } from "../utils/data";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CountsCard from "../components/cards/CountsCard";
 import WeeklyStatCard from "../components/cards/WeeklyStatCard";
 import CategoryChart from "../components/cards/CategoryChart";
