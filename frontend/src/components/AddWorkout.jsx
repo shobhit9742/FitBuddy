@@ -3,7 +3,6 @@ import styled from "styled-components";
 import TextInput from "./TextInput";
 import Button from "./Button";
 
-
 const Card = styled.div`
   flex: 1;
   min-width: 280px;
@@ -28,7 +27,6 @@ const Title = styled.div`
 `;
 
 const AddWorkout = ({ workout, setWorkout, addNewWorkout, buttonLoading }) => {
-
   return (
     <Card>
       <Title>Add New Workout</Title>
@@ -46,17 +44,15 @@ const AddWorkout = ({ workout, setWorkout, addNewWorkout, buttonLoading }) => {
 -Duration`}
         value={workout}
         handelChange={(e) => setWorkout(e.target.value)}
-
       />
       <Button
         text="Add Workout"
         small
         onClick={() => addNewWorkout()}
-
         isLoading={buttonLoading}
         isDisabled={buttonLoading}
       />
     </Card>
   );
+};
 export default AddWorkout;
-
