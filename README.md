@@ -8,8 +8,7 @@ Frontend | Backend
 
 ### Deployed Link
 
-- FitBuddy: [Live Demo](https://edu-school-k4id.vercel.app/)
-- Admin DashBoard: [Live Demo](https://edu-school-ka3k.vercel.app/)
+- FitBuddy: [Live Demo](https://union-ubuntu-046.vercel.app/)
 
 ### Directory Structure
 
@@ -17,7 +16,7 @@ Frontend | Backend
 
 ### video Walkthrough of the project
 
--[Presentation Link](https://www.youtube.com/watch?v=mR6HSHg8n68)
+-[Presentation Link](https://youtu.be/KAi-4gsl1bU)
 
 ### Screenshots
 
