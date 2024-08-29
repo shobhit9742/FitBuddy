@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://union-ubuntu-046.onrender.com",
+  baseURL: "https://union-ubuntu-046.onrender.com/",
 });
 
 export const UserSignUp = async (data) => API.post("/user/signup", data);
