@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "https://union-ubuntu-046.onrender.com",
 });
 
 export const UserSignUp = async (data) => API.post("/user/signup", data);
@@ -24,7 +24,7 @@ export const addWorkout = async (token, data) =>
 
   export const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/foods'); 
+      const response = await axios.get('https://union-ubuntu-046.onrender.com/foods'); 
       return response.data;
     } catch (error) {
       console.error("Error fetching data:", error);
