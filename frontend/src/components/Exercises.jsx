@@ -62,9 +62,116 @@ const Exercises = () => {
     fetchExercises(bodyPart);
   };
 
+  // return (
+  //   <div>
+  //     {error && <div>Error: {error.message}</div>}
+  //     <ul id="exUL">
+  //       <div id="exName">
+  //         {bodyParts.map((bodyPart, index) => (
+  //           <li
+  //             key={index}
+  //             onClick={() => handleBodyPartClick(bodyPart)}
+  //             className={
+  //               bodyPart === selectedBodyPart ? "selected" : "unselected"
+  //             }
+  //           >
+  //             {bodyPart.toUpperCase()}
+  //           </li>
+  //         ))}
+  //       </div>
+  //     </ul>
+  //     {selectedBodyPart && (
+  //       <div>
+  //         <h2 style={{ marginLeft: "80px" }}>
+  //           Exercises for {selectedBodyPart.toUpperCase()}:
+  //         </h2>
+
+  //         <div id="ulExampleBodyPart">
+  //           {exercises.map((exercise, index) => (
+  //             <div className="bodyExerciseList" key={index}>
+  //               <div className="imageDiv">
+  //                 <img src={exercise.gifUrl} alt={exercise.name} />
+  //               </div>
+  //               <div className="nameIntruction">
+  //                 <div className="exerName">
+  //                   <h2 key={index}>{exercise.name.toUpperCase()}</h2>
+  //                 </div>
+  //                 <div className="targettedMuscle">
+  //                   <div
+  //                     style={{
+  //                       display: "flex",
+  //                       alignItems: "center",
+  //                       flexWrap: "wrap",
+  //                     }}
+  //                   >
+  //                     <h4 style={{ fontWeight: "bold" }}>
+  //                       Target Muscles : &nbsp;
+  //                     </h4>
+  //                     {exercise.target.toUpperCase()};
+  //                   </div>
+  //                   <div
+  //                     style={{
+  //                       display: "flex",
+  //                       alignItems: "center",
+  //                       flexWrap: "wrap",
+  //                     }}
+  //                   >
+  //                     <h4 style={{ fontWeight: "bold" }}>Equipment : &nbsp;</h4>
+  //                     {exercise.equipment.toUpperCase()}
+  //                   </div>
+
+  //                   <div
+  //                     style={{
+  //                       display: "flex",
+  //                       alignItems: "center",
+  //                       flexWrap: "wrap",
+  //                     }}
+  //                   >
+  //                     <h4 style={{ fontWeight: "bold" }}>
+  //                       Secondary Muscles : &nbsp;
+  //                     </h4>
+  //                     {exercise.secondaryMuscles.map((muscles) => (
+  //                       <p key={muscles.id}>{muscles.toUpperCase()}, &nbsp;</p>
+  //                     ))}
+  //                   </div>
+  //                 </div>
+  //                 <div className="accordian">
+  //                   <Accordion>
+  //                     <AccordionSummary
+  //                       expandIcon={<ArrowDownwardIcon />}
+  //                       aria-controls="panel1-content"
+  //                       id="panel1-header"
+  //                     >
+  //                       <Typography>Instructions</Typography>
+  //                     </AccordionSummary>
+  //                     <AccordionDetails>
+  //                       <Typography
+  //                         style={{ textAlign: "left", textWrap: "wrap" }}
+  //                       >
+  //                         {exercise.instructions.map((para, index) => (
+  //                           <p key={index}>
+  //                             {index + 1}. {para}
+  //                           </p>
+  //                         ))}
+  //                       </Typography>
+  //                     </AccordionDetails>
+  //                   </Accordion>
+  //                 </div>
+  //               </div>
+  //               {/* equipment // gifUrl // instructions //target // secondaryMuscles*/}
+  //             </div>
+
+  //             // console.log(exercise)
+  //           ))}
+  //         </div>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
   return (
-    <div>
+    <div className="container">
       {error && <div>Error: {error.message}</div>}
+      {/* Sticky filter section */}
       <ul id="exUL">
         <div id="exName">
           {bodyParts.map((bodyPart, index) => (
@@ -80,6 +187,8 @@ const Exercises = () => {
           ))}
         </div>
       </ul>
+
+      {/* Scrollable exercise cards section */}
       {selectedBodyPart && (
         <div>
           <h2 style={{ marginLeft: "80px" }}>
@@ -158,10 +267,7 @@ const Exercises = () => {
                     </Accordion>
                   </div>
                 </div>
-                {/* equipment // gifUrl // instructions //target // secondaryMuscles*/}
               </div>
-
-              // console.log(exercise)
             ))}
           </div>
         </div>

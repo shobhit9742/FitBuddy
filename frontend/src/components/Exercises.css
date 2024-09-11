@@ -12,7 +12,6 @@
 }
 
 #exName li {
-
   width: 6.8rem;
   list-style: none;
   text-align: center;
@@ -32,12 +31,11 @@ li {
 }
 
 #ulExampleBodyPart {
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 0;
-  /* max-height: 450px;  */
+  max-height: 70vh;
   overflow-y: auto;
   padding: 10px;
   border: 1px solid #ddd;
@@ -48,10 +46,14 @@ li {
   width: 82%;
   display: flex;
   text-align: center;
-  /* border: 1px solid black; */
+  border: 1px solid lightgray;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   border-radius: 15px;
   margin-bottom: 20px; /* Add some space between exercises */
+}
+
+.bodyExerciseList:nth-last-child(0){
+  margin-bottom: 20px;
 }
 
 #ulExampleBodyPart img {
@@ -67,8 +69,8 @@ li {
 
 .accordian {
   /* display: flex; */
-margin-top: 20px;
-margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .imageDiv img {
@@ -84,11 +86,11 @@ margin-bottom: 10px;
 .unselected {
   opacity: 0.5;
 }
-.targettedMuscle div{
-margin-bottom: 10px;
+.targettedMuscle div {
+  margin-bottom: 10px;
 }
 .targettedMuscle p {
-  margin: 0 5px ;
+  margin: 0 5px;
 }
 
 .targettedMuscle div h4 {
