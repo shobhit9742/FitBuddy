@@ -9,7 +9,7 @@ import MealRoutes from "./src/routes/Meal.js";
 dotenv.config();
 
 const app = express();
-const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL];
+const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL, process.env.CLIENT_URL_1];
 
 const corsOptions = {
   origin: (origin, callback) => {
