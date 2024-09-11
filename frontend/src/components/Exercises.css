@@ -52,7 +52,7 @@ li {
   margin-bottom: 20px; /* Add some space between exercises */
 }
 
-.bodyExerciseList:nth-last-child(0){
+.bodyExerciseList:nth-last-child(0) {
   margin-bottom: 20px;
 }
 
@@ -102,4 +102,57 @@ li {
 }
 .MuiPaper-elevation {
   width: 80%;
+}
+
+/* Media Queries */
+
+/* Tablet Devices (768px to 1024px) */
+@media (max-width: 1024px) {
+  #ulExampleBodyPart {
+    max-height: 60vh; /* Adjusted height for tablet screens */
+    padding: 8px; /* Reduced padding */
+  }
+
+  .bodyExerciseList {
+    width: 90%; /* Adjust width for tablet screens */
+    display: block;
+  }
+
+  #ulExampleBodyPart img {
+    width: 250px; /* Adjusted image width for tablet screens */
+  }
+
+  .nameIntruction {
+    margin-left: 50px; /* Reduced margin for tablet screens */
+  }
+  .accordian{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Mobile Devices (up to 768px) */
+@media (max-width: 768px) {
+  #ulExampleBodyPart {
+    max-height: 50vh; /* Adjusted height for mobile screens */
+    padding: 5px; /* Further reduced padding */
+  }
+
+  .bodyExerciseList {
+    width: 100%; /* Full width for mobile screens */
+    margin-bottom: 10px; /* Reduced margin */
+  }
+
+  #ulExampleBodyPart img {
+    width: 200px; /* Adjusted image width for mobile screens */
+  }
+
+  .nameIntruction {
+    margin-left: 20px; /* Further reduced margin for mobile screens */
+  }
+
+  .imageDiv img {
+    margin-left: 0; /* Removed margin for mobile screens */
+    max-width: 100%; /* Ensure images fit within their container */
+  }
 }
