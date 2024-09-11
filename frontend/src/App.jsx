@@ -10,7 +10,6 @@ import MealTracker from "./components/MealTracker";
 
 import { Authentication } from "./pages/Authentication";
 import { Navbar } from "./components/Navbar";
-import { useState } from "react";
 import { Contact } from "./pages/Contact";
 import { Calculater } from "./pages/Calculater";
 import Exercises from "./components/Exercises";

@@ -57,7 +57,7 @@ const PersonalFoods = () => {
       setLoading(true);
       setSearched(true);
       try {
-        const response = await axios.get(`http://localhost:8080/api/food/search?name=${debouncedSearchQuery}`);
+        const response = await axios.get(`https://testing-435o.onrender.com/api/food/search?name=${debouncedSearchQuery}`);
         setFoods(response.data);
       } catch (error) {
         console.error('Error fetching data', error);

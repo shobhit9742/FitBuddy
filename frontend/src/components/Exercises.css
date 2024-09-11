@@ -37,7 +37,7 @@ li {
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 0;
-  max-height: 450px; /*Adjust the height as needed*/
+  /* max-height: 450px;  */
   overflow-y: auto;
   padding: 10px;
   border: 1px solid #ddd;

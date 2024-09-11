@@ -129,13 +129,17 @@ const MobileMenu = styled.ul`
   z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
 `;
 
-export const Navbar = ({currentUser}) => {
-    const dispatch = useDispatch();
-    const [isOpen,setisOpen]=useState(false);
+export const Navbar = ({ currentUser }) => {
+  const dispatch = useDispatch();
+  const [isOpen, setisOpen] = useState(false);
   return (
     <Nav>
       <NavContainer>
-        <Mobileicon onClick={()=>{setisOpen(!isOpen)}}>
+        <Mobileicon
+          onClick={() => {
+            setisOpen(!isOpen);
+          }}
+        >
           <MenuRounded sx={{ color: "inherit" }} />
         </Mobileicon>
         <NavLogo to="/">
@@ -158,14 +162,14 @@ export const Navbar = ({currentUser}) => {
           <Navlink to="/workouts">Workouts</Navlink>
           <Navlink to="/exercises">Exercises</Navlink>
           <Navlink to="/personal-foods">Search</Navlink>
-//           <Navlink to="/tutorials">Tutorials</Navlink>
+          <Navlink to="/tutorials">Tutorials</Navlink>
           <Navlink to="/Calculater">Calculater</Navlink>
           <Navlink to="/contact">Contact</Navlink>
         </NavItems>
 
         {/* usercontainer */}
         <UserContainer>
-        <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
+          <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
           <TextButton onClick={() => dispatch(logout())}>Logout</TextButton>
         </UserContainer>
       </NavContainer>

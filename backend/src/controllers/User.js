@@ -12,6 +12,13 @@ export const UserRegister = async (req, res, next) => {
     const { email, password, name, img } = req.body;
     const privateKey = process.env.JWT;
 
+    // **Validation Step**
+    if (!email || !password || !name) {
+      return next(
+        createError(400, "All fields (email, password, name) are required.")
+      );
+    }
+
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       return next(createError(409, "Email is already in use."));

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -75,14 +76,15 @@ const Exercises = () => {
               }
             >
               {bodyPart.toUpperCase()}
-
             </li>
           ))}
         </div>
       </ul>
       {selectedBodyPart && (
         <div>
-          <h2 style={{marginLeft:"80px"}}>Exercises for {selectedBodyPart.toUpperCase()}:</h2>
+          <h2 style={{ marginLeft: "80px" }}>
+            Exercises for {selectedBodyPart.toUpperCase()}:
+          </h2>
 
           <div id="ulExampleBodyPart">
             {exercises.map((exercise, index) => (
@@ -129,7 +131,7 @@ const Exercises = () => {
                         Secondary Muscles : &nbsp;
                       </h4>
                       {exercise.secondaryMuscles.map((muscles) => (
-                        <p>{muscles.toUpperCase()}, &nbsp;</p>
+                        <p key={muscles.id}>{muscles.toUpperCase()}, &nbsp;</p>
                       ))}
                     </div>
                   </div>
@@ -143,8 +145,10 @@ const Exercises = () => {
                         <Typography>Instructions</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography style={{ textAlign: "left", textWrap:"wrap"}}>
-            {exercise.instructions.map((para, index) => (
+                        <Typography
+                          style={{ textAlign: "left", textWrap: "wrap" }}
+                        >
+                          {exercise.instructions.map((para, index) => (
                             <p key={index}>
                               {index + 1}. {para}
                             </p>
